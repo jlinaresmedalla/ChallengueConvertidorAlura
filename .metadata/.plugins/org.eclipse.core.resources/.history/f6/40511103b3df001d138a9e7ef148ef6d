@@ -1,0 +1,143 @@
+package com.ventanas;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import com.clases.Divisa;
+
+import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+
+public class ConversorMonedas extends JInternalFrame {
+	private JTextField ctMontoConvertido;
+	private JComboBox cbDivisasInicial;
+	private JTextField ctMontoInicial;
+	private JComboBox cbDivisasFinal;
+	private JLabel img1;
+	private JLabel img2;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ConversorMonedas frame = new ConversorMonedas();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ConversorMonedas() {
+		setClosable(true);
+		setTitle("Conversor de Divisas");
+		setBounds(100, 100, 316, 300);
+		getContentPane().setLayout(null);
+		
+		cbDivisasInicial = new JComboBox();
+		cbDivisasInicial.setModel(new DefaultComboBoxModel(new String[] {"PEN - Sol Peruano", "USD - Dolar", "EUR - Euro", "GBP - Libra Esterlina", "JPY - Yen Japonés", "KRW - Won sul-coreano"}));
+		cbDivisasInicial.setBounds(46, 92, 207, 22);
+		getContentPane().add(cbDivisasInicial);
+		
+		JLabel eTexto = new JLabel("Ingresa monto a convertir:");
+		eTexto.setFont(new Font("Tahoma", Font.BOLD, 15));
+		eTexto.setBounds(46, 35, 207, 27);
+		getContentPane().add(eTexto);
+		
+		ctMontoConvertido = new JTextField();
+		ctMontoConvertido.setBounds(46, 195, 207, 27);
+		getContentPane().add(ctMontoConvertido);
+		ctMontoConvertido.setColumns(10);
+		
+		ctMontoInicial = new JTextField();
+		ctMontoInicial.setColumns(10);
+		ctMontoInicial.setBounds(46, 62, 207, 27);
+		getContentPane().add(ctMontoInicial);
+		
+		img2 = new JLabel("New label");
+		img2.setBounds(193, 125, 60, 31);
+		getContentPane().add(img2);
+		
+		img1 = new JLabel("New label");
+		img1.setBounds(56, 125, 60, 31);
+		getContentPane().add(img1);
+		
+		JLabel lbl = new JLabel(">>>");
+		lbl.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lbl.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl.setBounds(126, 125, 46, 31);
+		getContentPane().add(lbl);
+		
+		JLabel eTitulo = new JLabel("CONVERSOR DE DIVISAS");
+		eTitulo.setForeground(new Color(255, 0, 0));
+		eTitulo.setFont(new Font("Tahoma", Font.BOLD, 17));
+		eTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+		eTitulo.setBounds(10, 0, 274, 34);
+		getContentPane().add(eTitulo);
+		
+		cbDivisasFinal = new JComboBox();
+		cbDivisasFinal.setModel(new DefaultComboBoxModel(new String[] {"USD - Dolar", "EUR - Euro", "GBP - Libra Esterlina", "JPY - Yen Japonés", "KRW - Won sul-coreano", "PEN - Sol Peruano"}));
+		cbDivisasFinal.setBounds(46, 167, 207, 22);
+		getContentPane().add(cbDivisasFinal);
+		
+		JButton btnNewButton = new JButton("CONVERTIR");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				convertir();
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnNewButton.setBounds(98, 233, 108, 31);
+		getContentPane().add(btnNewButton);
+
+	}
+	
+	public void convertir() {
+		//Declaro las divisas
+		ArrayList<Divisa> listaDivisa = new ArrayList<>();
+		Divisa PEN = new Divisa("PEN - Sol peruano", 1);
+		Divisa USD = new Divisa("USD - Dolar", 3.76);
+		Divisa EUR = new Divisa("EUR - Euro", 4.12);
+		Divisa GBP = new Divisa("GBP - Libra Esterlina", 4.68);
+		Divisa JPY = new Divisa("JPY - Yen Japonés", 0.028);
+		Divisa KRW = new Divisa("KRW - Won sul-coreano", 0.0028);
+		
+		listaDivisa.add(PEN);
+		listaDivisa.add(USD);
+		listaDivisa.add(EUR);
+		listaDivisa.add(GBP);
+		listaDivisa.add(JPY);
+		listaDivisa.add(KRW);
+		
+		//Operaciones
+		for(Divisa item : listaDivisa) {
+			if (cbDivisasInicial.getSelectedItem() == item.getNombre() ) {
+				
+				item.getEquivalenciaSol();
+				Double.parseDouble(ctMontoInicial.getText());
+				ctMontoConvertido.setText(n);
+			}
+		}
+
+		
+	}
+	
+	
+}

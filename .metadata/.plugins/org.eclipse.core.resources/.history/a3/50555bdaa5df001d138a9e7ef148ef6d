@@ -1,0 +1,29 @@
+package com.clases;
+
+public class Divisa {
+	
+	private String nombre;
+	private String etiqueta;
+	private double equivalenciaDolar;
+	
+	public Divisa(String nombre, String etiqueta, double equivalenciaDolar) {
+		super();
+		this.nombre = nombre;
+		this.etiqueta = etiqueta;
+		this.equivalenciaDolar = equivalenciaDolar;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public double getEquivalenciaDolar() {
+		return equivalenciaDolar;
+	}
+	public void setEquivalenciaDolar(double equivalenciaDolar) {
+		this.equivalenciaDolar = equivalenciaDolar;
+	}
+	
+}

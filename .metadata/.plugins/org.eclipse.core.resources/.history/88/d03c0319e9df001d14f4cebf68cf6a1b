@@ -1,0 +1,118 @@
+package com.general;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JDesktopPane;
+import java.awt.BorderLayout;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+import com.conversores.ConversorMonedas;
+import com.conversores.ConversorTemperatura;
+
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+
+public class ventanaNavegacion {
+
+	private JFrame frmProgramaDeConversores;
+	private JDesktopPane desktopPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ventanaNavegacion window = new ventanaNavegacion();
+					window.frmProgramaDeConversores.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public ventanaNavegacion() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmProgramaDeConversores = new JFrame();
+		frmProgramaDeConversores.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				salir();
+			}
+		});
+		frmProgramaDeConversores.setTitle("SISTEMA DE CONVERSORES");
+		frmProgramaDeConversores.setBounds(100, 100, 973, 560);
+		frmProgramaDeConversores.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frmProgramaDeConversores.setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("ARCHIVO");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("SALIR");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				salir();
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenu menuConversores = new JMenu("CONVERSORES");
+		menuBar.add(menuConversores);
+		
+		JMenuItem itemMonedas = new JMenuItem("MONEDAS");
+		itemMonedas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConversorMonedas c = new ConversorMonedas();
+				desktopPane.add(c);
+				c.setVisible(true);
+			}
+		});
+		menuConversores.add(itemMonedas);
+		
+		JMenuItem itemTemperatura = new JMenuItem("TEMPERATURA");
+		itemTemperatura.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConversorTemperatura q = new ConversorTemperatura();
+				desktopPane.add(q);
+				q.setVisible(true);
+			}
+		});
+		menuConversores.add(itemTemperatura);
+		
+		desktopPane = new JDesktopPane();
+		desktopPane.setBackground(new Color(255, 128, 0));
+		frmProgramaDeConversores.getContentPane().add(desktopPane, BorderLayout.CENTER);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(ventanaNavegacion.class.getResource("/com/recursos/bg.PNG")));
+		lblNewLabel.setBounds(0, 0, 964, 506);
+		desktopPane.add(lblNewLabel);
+	}
+	
+	private void salir() {
+		int resp = javax.swing.JOptionPane.showConfirmDialog(frmProgramaDeConversores, "¿Quiere salir de la aplicación?", "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		if(resp == 0) {
+			System.exit(0);
+		}
+	}
+}

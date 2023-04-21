@@ -1,0 +1,17 @@
+1682010364638	Rename type 'ventanaIngreso'
+1682010376218	Move compilation unit
+1682010416175	Rename package 'com.ingreso'
+1682010450559	Rename package 'conversorMonedas'
+1682013934205	Rename field 'equivalenciaDolar'
+1682014007395	Move compilation unit
+1682014010904	Move compilation unit
+1682014080342	Rename type 'ConversorMonedas'
+1682017924594	Move compilation unit
+1682017952498	Move compilation unit
+1682038720774	Rename package 'com.ventanas'
+1682038748402	Copy compilation unit
+1682038936540	Rename field 'cbDivisasInicial'
+1682039023826	Rename field 'ctMontoConvertido'
+1682039042887	Rename field 'ctMontoInicial'
+1682039132243	Rename field 'cbDivisasFinal'
+1682043693595	Delete element

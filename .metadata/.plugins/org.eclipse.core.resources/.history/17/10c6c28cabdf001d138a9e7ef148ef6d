@@ -1,0 +1,96 @@
+package com.general;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JDesktopPane;
+import java.awt.BorderLayout;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
+import com.ventanas.ConversorMonedas;
+
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class ventanaNavegacion {
+
+	private JFrame frmProgramaDeConversores;
+	private JDesktopPane desktopPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ventanaNavegacion window = new ventanaNavegacion();
+					window.frmProgramaDeConversores.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public ventanaNavegacion() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmProgramaDeConversores = new JFrame();
+		frmProgramaDeConversores.setTitle("SISTEMA DE CONVERSORES");
+		frmProgramaDeConversores.setBounds(100, 100, 450, 300);
+		frmProgramaDeConversores.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frmProgramaDeConversores.setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("ARCHIVO");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("SALIR");
+		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenu mnNewMenu_1 = new JMenu("CONVERSORES");
+		menuBar.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("MONEDAS");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConversorMonedas conversorMonedas = new ConversorMonedas();
+				ventanaNavegacion.add(conversorMonedas);
+				conversorMonedas.setVisible(true);
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("TEMPERATURA");
+		mnNewMenu_1.add(mntmNewMenuItem_2);
+		
+		JMenu mnNewMenu_2 = new JMenu("ACERCA DE");
+		menuBar.add(mnNewMenu_2);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("INFO");
+		mnNewMenu_2.add(mntmNewMenuItem_3);
+		
+		desktopPane = new JDesktopPane();
+		desktopPane.setBackground(new Color(255, 204, 51));
+		frmProgramaDeConversores.getContentPane().add(desktopPane, BorderLayout.CENTER);
+	}
+
+	protected static void add(ConversorMonedas conversorMonedas) {
+		// TODO Auto-generated method stub
+		
+	}
+}
